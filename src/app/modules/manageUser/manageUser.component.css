@@ -1,0 +1,82 @@
+
+  .btn {
+    position: relative;
+    margin-right: 10px;
+    /* Add some margin to the right of each button */
+  }
+
+  .cube-hover {
+    display: inline-block;
+  }
+
+  .bg-top,
+  .bg-right,
+  .bg,
+  .bg-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bg-top .bg-inner,
+  .bg-right .bg-inner,
+  .bg .bg-inner {
+    background: #fff;
+    /* Adjust this to match your desired background color */
+  }
+
+  .text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn {
+    position: relative;
+    margin-right: 10px;
+    /* Add some margin to the right of each button */
+  }
+
+  .cube-hover {
+    display: inline-block;
+  }
+
+  .bg-top,
+  .bg-right,
+  .bg,
+  .bg-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bg-top .bg-inner,
+  .bg-right .bg-inner,
+  .bg .bg-inner {
+    background: #fff;
+    /* Adjust this to match your desired background color */
+  }
+
+  .text {
+    position: relative;
+    z-index: 1;
+  }
+
+  .input-group-prepend {
+    width: 50px;
+    /* ปรับความกว้างของส่วนก่อน input */
+  }
+
+  .form-control {
+    width: calc(100% - 50px);
+    /* ลบความกว้างของส่วนก่อน input จากความกว้างทั้งหมด */
+  }
+
+  .container {
+    margin: 2px auto; /* ระยะห่างจากขอบด้านบนและขอบซ้ายขวา */
+    padding: 20px; /* ระยะห่างภายใน */
+    max-width: 1200px; /* กำหนดความกว้างสูงสุด */
+ 
+}
+
+
+

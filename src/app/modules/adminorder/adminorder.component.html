@@ -1,0 +1,97 @@
+<div *ngFor="let order of orderList" class="order-card mb-4">
+    <div class="row g-20">
+        <!-- Product Details -->
+        <div class="col-md-6">
+            <div class="card mb-3" style="width: 18rem;" *ngFor="let product of order.productList; let i = index">
+                <div class="row g-1">
+                    <div class="col-md-4">
+                        <img *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" class="product-img"
+                            alt="รูปภาพสินค้า">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h6 class="mb-0 text-sm">ชื่อสินค้า: {{ product.productName }}</h6>
+                            <p class="mb-0"
+                                style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 80ch;">
+                                รายละเอียด: {{ product.productDesc }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <span class="text-secondary text-xs font-weight-bold">{{ product.price | currency:'THB '
+                                    }}</span>
+                                <span class="text-secondary text-xs font-weight-bold">{{ getQuantity(order,
+                                    product.productId) }} ชิ้น</span>
+                            </li>
+                        </ul>
+                        <div class="card-body">
+                            <span class="text-secondary text-danger font-weight-bold">ราคารวม: {{ (product.price *
+                                getQuantity(order, product.productId)) | currency:'THB ' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Order Details -->
+        <div class="col-md-6">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ไอดี
+                            ออเดอร์</th>
+                        <td>{{ order.ordersId }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ไอดี
+                            ผู้ใช้</th>
+                        <td>{{ order.userId }}</td>
+                    </tr>
+                    <tr *ngIf="order.userData">
+                        <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            ชื่อ-นามสกุล</th>
+                        <td>{{ order.userData.firstName }} {{ order.userData.lastName }}</td>
+                    </tr>
+                    <tr *ngIf="order.userData">
+                        <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            เบอร์ติดต่อ</th>
+                        <td>{{ order.userData.phone }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            สถานะการชำระเงิน</th>
+                        <td>
+                            <span *ngIf="order.status == '1'"
+                                class="badge badge-sm bg-gradient-success">ชำระเงินแล้ว</span>
+                            <span *ngIf="order.status != '1'"
+                                class="badge badge-sm bg-gradient-danger">ยังไม่ชำระเงิน</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            วันที่สั่งสินค้า</th>
+                        <td>{{ order.createDate | date: 'medium' }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            ที่อยู่</th>
+                        <td>{{ order.address }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            จังหวัด</th>
+                        <td>{{ order.province }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                            รหัสไปรษณีย์</th>
+                        <td>{{ order.zipcode }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-end gap-1">
+                <button class="btn btn-warning">แก้ไข</button>
+                <button class="btn btn-danger" (click)="onDeleteOrder(order.ordersId)">ลบ</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+.card {
+    color: rgba(5, 5, 5, 0.914);
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+
+  }
+
+  .form-label,
+  .form-control {
+    color: rgb(0, 0, 0);
+  }
+
+  .form-control::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+
+  }
+
+  .form-container {
+    border: 2px solid rgba(177, 171, 171, 0.912);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.305);
+
+  }
+
+  .form-label {
+    color: black;
+
+  }/* profile.component.css */
+
+/* Style for form labels */
+.col-form-label {
+    font-weight: bold;
+    color: #333; /* Dark color for labels */
+  }
+  
+  /* Style for input fields */
+  .form-control {
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  /* Style for select dropdown */
+  .custom-select {
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+  }
+  
+  /* Style for submit button */
+  .btn-primary {
+    background-color: #007bff; /* Blue background color */
+    border-color: #007bff; /* Blue border color */
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3; /* Darker blue background color on hover */
+    border-color: #0056b3; /* Darker blue border color on hover */
+  }
+  
+  /* Optional: Add padding to form elements */
+  .form-group {
+    padding: 10px 0; /* Top and bottom padding */
+  }
+  

@@ -1,0 +1,174 @@
+<div class="container">
+  <div class="main-body">
+    <div class="row">
+      <div class="col-lg-4">
+        <div class="card bg-light border-0">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRd2YU3pwixC2ZQ49zgUCPpS19giyOezGBinl0j0kTf7lJn-VG2pC6xwAL44SOwo4NNTO4&usqp=CAU"
+                alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+              <div class="mt-3">
+                <h4>{{ userDetail.userName }}</h4>
+                <p class="text-secondary mb-1">Full Stack Developer</p>
+                <p class="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+              </div>
+            </div>
+            <hr class="my-4">
+            <ul class="list-group list-group-flush">
+              <!-- Your list group items here -->
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card bg-light border-0">
+          <div class="card-body">
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">UserName</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control" value="{{ userDetail.userName }}">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">FirstName</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control" value="{{ userDetail.fristName }}">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">LastName</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control" value="{{ userDetail.lastName }}">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Phone</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control" value="{{ userDetail.phone }}">
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Age</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                <input type="text" class="form-control" value="{{ userDetail.age }}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-3"></div>
+              <div class="col-sm-9 text-secondary">
+                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal" data-bs-whatever="@fat">Edit Profile</button>
+
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Profile</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        <form [formGroup]="updateForm" (ngSubmit)="onSubmit()">
+                          <div class="form-group row">
+                            <label for="username" class="col-4 col-form-label">User Name</label>
+                            <div class="col-12">
+                              <input formControlName="userName" placeholder="Username" class="form-control here"
+                                required="required" type="text" readonly>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="firstName" class="col-4 col-form-label">First Name</label>
+                            <div class="col-12">
+                              <input formControlName="fristName" placeholder="First Name" class="form-control here"
+                                type="text">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="lastname" class="col-4 col-form-label">Last Name</label>
+                            <div class="col-12">
+                              <input formControlName="lastName" placeholder="Last Name" class="form-control here"
+                                type="text">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="text" class="col-4 col-form-label">Phone</label>
+                            <div class="col-12">
+                              <input formControlName="phone" placeholder="phone" class="form-control here"
+                                required="required" type="text">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="age" class="col-4 col-form-label">Age</label>
+                            <div class="col-12">
+                              <input formControlName="age" placeholder="Email" class="form-control here"
+                                required="required" type="text">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="select" class="col-4 col-form-label">RoleName</label>
+                            <div class="col-12">
+                              <select class="custom-select" formControlName="roleId" readonly>
+                                <option *ngFor="let item of roleList" value="{{ item.id }}" [disabled]="true">
+                                  {{ item.roleName }}</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <div class="offset-4 col-12">
+                              <button name="submit" type="submit" class="btn btn-primary">Update My Profile</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card bg-light border-0 mt-4">
+          <div class="card-body">
+            <h5 class="d-flex align-items-center mb-3">Project Status</h5>
+            <p>Web Design</p>
+            <div class="progress mb-3" style="height: 5px">
+              <div class="progress-bar bg-primary" role="progressbar" style="width: 80%" aria-valuenow="80"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p>Website Markup</p>
+            <div class="progress mb-3" style="height: 5px">
+              <div class="progress-bar bg-danger" role="progressbar" style="width: 72%" aria-valuenow="72"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p>One Page</p>
+            <div class="progress mb-3" style="height: 5px">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 89%" aria-valuenow="89"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p>Mobile Template</p>
+            <div class="progress mb-3" style="height: 5px">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: 55%" aria-valuenow="55"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <p>Backend API</p>
+            <div class="progress" style="height: 5px">
+              <div class="progress-bar bg-info" role="progressbar" style="width: 66%" aria-valuenow="66"
+                aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

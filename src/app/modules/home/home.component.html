@@ -1,0 +1,62 @@
+<div class="container">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100"
+                    src="https://www.beartai.com/wp-content/uploads/2022/06/%E0%B8%9B%E0%B8%81-7.jpg">
+            </div>
+        </div>
+    </div>
+
+    <div class="product-container">
+        <div *ngFor="let product of productList" class="product-card">
+            <a [routerLink]="'/titles/' + product.productId" class="product-link">
+                <div class="product-title">
+                    <p class="label">
+                        <a class="label-text">
+                            <!-- <h2>NEW</h2> -->
+                        </a>
+                    </p>
+                    <img *ngFor="let productImg of product.imgList" [src]="productImg.value" class="product-image">
+                    <div class="product-description">
+                        <h6 class="product-name">{{ product.productName }}</h6>
+                        <p class="product-author">{{ product.productDesc }}</p>
+                    </div>
+                </div>
+            </a>
+            <div class="product-details">
+                <div class="product-price">
+                    ราคา : <span class="text-secondary text-xs font-weight-bold">{{ product.price }}</span>
+                </div>
+                <div class="product-action">
+                    <button class="add-to-cart-button">ซื้อ</button>
+                    <button class="add-to-cart-button"
+                        (click)="addToCart(product.productId, product.quantityToAdd)">ใส่ตะกร้า</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="toggle-cart-btn" (click)="toggleCart()">
+        <i class="bi bi-cart"></i>ตะกร้า
+        <span class="cart-item-count" *ngIf="cartItemCount > 0">{{ cartItemCount }}</span>
+    </button>
+
+    <div class="cart-container" [class.show]="isCartVisible">
+        <h1>ตะกร้า</h1>
+        <form class="cart-form">
+            <div class="cart-item" *ngFor="let item of cartItems">
+                <img [src]="item.imageUrl" alt="Product Image" class="cart-item-image">
+                <div class="cart-item-details">
+                    <h3>{{ item.name }}</h3>
+                    <p>ราคา: {{ item.price }}</p>
+                    <button class="remove-from-cart-button" (click)="removeFromCart(item.productId)">Remove</button>
+                </div>
+            </div>
+            <div class="total-cost">
+                <h3>ราคาทั้งหมด: {{ totalCost }}</h3>
+            </div>
+            <button class="add-to-cart-button" (click)="buyNow()">ซื้อ</button>
+        </form>
+    </div>
+</div>

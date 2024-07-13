@@ -1,0 +1,138 @@
+<div class="row">
+    <div class="col-lg-7">
+        <h5 class="mb-3"><a class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Continue
+                shopping</a></h5>
+        <hr>
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <p class="mb-1">Shopping cart</p>
+                <p class="mb-0">คุณมี {{ cartItems.length }} สินค้าทั้งหมด</p>
+            </div>
+            <div>
+                <p class="mb-0"><span class="text-muted">Sort by:</span> <a class="text-body">price <i
+                            class="fas fa-angle-down mt-1"></i></a></p>
+            </div>
+        </div>
+        <div class="card mb-3" *ngFor="let item of cartItems">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex flex-row align-items-center">
+                        <div>
+                            <img [src]="item.imageUrl" alt="Product Image" class="cart-item-image img-fluid rounded-3"
+                                style="width: 65px;">
+                        </div>
+                        <div class="ms-3">
+                            <h5>{{ item.name }}</h5>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-row align-items-center">
+                        <div style="width: 150px;" class="quantity-control">
+                            <button class="quantity-button" (click)="decreaseQuantity(item.productId)">-</button>
+                            <span>{{ item.quantity }}</span>
+                            <button class="quantity-button" (click)="increaseQuantity(item.productId)">+</button>
+                        </div>
+                        <div style="width: 80px;">
+                            <h5 class="mb-0">{{ item.price }}</h5>
+                        </div>
+                        <button class="remove-from-cart-button" (click)="removeFromCart(item.productId)">ลบ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5">
+        <div class="card bg-info text-white rounded-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h5 class="mb-0">Card details</h5>
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/avatar-6.webp" class="img-fluid rounded-3"
+                        style="width: 45px;" alt="Avatar">
+                </div>
+
+                <p class="small mb-2">Card type</p>
+                <i class="fab fa-cc-mastercard fa-2x me-2"></i>
+                <i class="fab fa-cc-visa fa-2x me-2"></i>
+                <i class="fab fa-cc-amex fa-2x me-2"></i>
+                <i class="fab fa-cc-paypal fa-2x"></i>
+
+                <form [formGroup]="formData" (ngSubmit)="onSubmit()">
+
+                    <div class="form-outline form-white mb-4">
+                        <input formControlName="address" type="text" class="form-control text-light bg-dark"
+                            placeholder="รายละเอียดที่อยู่" />
+                        <p class="text-white">รายละเอียดที่อยู่</p>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-outline form-white">
+                                <input formControlName="province" type="text" class="form-control text-light bg-dark"
+                                    placeholder="จังหวัด/อำเภอ/ตำบล" />
+                                <p class="text-white">จังหวัด/อำเภอ/ตำบล</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="form-outline form-white">
+                                <input formControlName="zipcode" type="text" class="form-control text-light bg-dark"
+                                    placeholder="รหัสไปรษณีย์" />
+                                <p class="text-white">รหัสไปรษณีย์</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-2">ราคา</p>
+                        <p class="mb-2">{{ totalCost }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-2">ค่าส่ง</p>
+                        <p class="mb-2">+40.00</p>
+                    </div>
+
+                    <div class="d-flex justify-content-between mb-4">
+                        <p class="mb-2">รวมราคา+ค่าขนส่ง</p>
+                        <p class="mb-2">{{ totalCost + 40 }}</p>
+                    </div>
+
+                    <button type="button" class="btn btn-success btn-block btn-lg" data-bs-toggle="modal"
+                        data-bs-target="#paymentModal2">
+                        <div class="d-flex justify-content-between">
+                            <span>{{ totalCost + 40 }}</span>
+                            <span>ยืนยันการสั่งซื้อ <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
+                        </div>
+                    </button>
+
+                    <div class="modal fade" id="paymentModal2">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="paymentModal2Label">ชำระพร้อมเพย์</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body container-center">
+                                    <img src="https://www.paocloud.co.th/wp-content/uploads/2021/01/Screen-Shot-2564-01-26-at-18.56.53.png"
+                                        alt="QR Code 2" class="img-fluid">
+                                    <button class="btn btn-active btn-neutral text-simple large-text-button mt-3">
+                                        <span>ราคา </span>
+                                        <span>{{ totalCost + 40 }}</span>
+                                    </button>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-success btn-blocklg"
+                                        data-bs-dismiss="modal">ยืนยัน</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

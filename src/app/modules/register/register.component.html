@@ -1,0 +1,161 @@
+<style>
+	.card {
+		color: rgba(5, 5, 5, 0.914);
+		background-size: cover;
+		background-position: center;
+		width: 100%;
+		/* Removed the brightness filter */
+	}
+
+	.form-label,
+	.form-control {
+		color: rgb(0, 0, 0);
+	}
+
+	.form-control::placeholder {
+		color: rgba(0, 0, 0, 0.6);
+		/* Updated placeholder color to ensure readability */
+	}
+
+	.form-container {
+		border: 2px solid rgba(251, 251, 251, 0.912);
+		padding: 20px;
+		border-radius: 10px;
+		background-color: rgba(255, 255, 255, 0.305);
+		/* Updated background color for more brightness */
+	}
+
+	.form-label {
+		color: black;
+		/* Updated to black for better readability */
+	}
+
+	.rainbow-text {
+		background: linear-gradient(90deg, rgb(228, 3, 209), rgb(150, 177, 190), yellow, rgb(223, 235, 10), rgb(3, 3, 24), indigo, violet);
+		background-size: 4000% 3000%;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: rainbow 10s ease infinite;
+	}
+
+	@keyframes rainbow {
+		0% {
+			background-position: 0% 50%;
+		}
+
+		50% {
+			background-position: 100% 50%;
+		}
+
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+</style>
+
+<section class="card"
+	style="background-image: url('https://www.icegif.com/wp-content/uploads/2023/02/icegif-1341.gif');">
+	<div>
+		<div class="row d-flex justify-content-center align-items-center h-100">
+			<div class="col-lg-12 col-xl-11">
+				<div>
+					<div>
+						<div class="row justify-content-center">
+							<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1 ">
+
+								<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4 rainbow-text">ลงทะเบียน</p>
+								<div class="container mt-5">
+									<form [formGroup]="registerForm" (ngSubmit)="onSubmit()"
+										class="mx-1 mx-md-4 form-container">
+
+										<div class="form-group input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+											</div>
+											<input formControlName="fristName" class="form-control"
+												placeholder="Frist name" type="text">
+										</div> <!-- form-group// -->
+
+										<div class="form-group input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+											</div>
+											<input formControlName="lastName" class="form-control"
+												placeholder="Last name" type="text">
+										</div> <!-- form-group// -->
+
+										<div class="form-group input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text"> <i class="fa fa-phone"></i> </span>
+											</div>
+											<input formControlName="phone" class="form-control"
+												placeholder="Phone number" type="text">
+										</div> <!-- form-group// -->
+
+										<div class="form-group input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+											</div>
+											<input formControlName="age" class="form-control" placeholder="Age"
+												type="text">
+										</div> <!-- form-group// -->
+
+										<div class="form-group input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text"> <i class="fa fa-building"></i> </span>
+											</div>
+											<select class="form-control" formControlName="roleId">
+												<option selected="" value=""> กรุณาเลือก Role</option>
+												<option *ngFor="let item of roleList" value="{{item.id}}">
+													{{item.roleName}}</option>
+											</select>
+										</div> <!-- form-group end.// -->
+
+										<div class="form-group input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+											</div>
+											<input formControlName="userName" class="form-control"
+												placeholder="userName" type="text">
+										</div> <!-- form-group// -->
+
+										<div class="form-group input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+											</div>
+											<input formControlName="password" class="form-control"
+												placeholder="Create password" type="password">
+										</div> <!-- form-group// -->
+
+										<div class="form-group input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+											</div>
+											<input formControlName="confirmPassword" class="form-control"
+												placeholder="Repeat password" type="password">
+										</div> <!-- form-group// -->
+
+										<div class="form-check d-flex justify-content-center mb-5">
+											<label class="form-check-label" for="form2Example3">
+												I agree all statements in <a href="#!">Terms of service</a>
+											</label>
+										</div>
+										<div>
+											<p *ngIf="isPassword">กรุณาส่งกระจกใส่รหัสไห้ตรงกัน</p>
+										</div>
+										<div class="form-group">
+											<button type="submit" class="btn btn-primary btn-block"> Create Account
+											</button>
+										</div> <!-- form-group// -->
+
+									</form>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
