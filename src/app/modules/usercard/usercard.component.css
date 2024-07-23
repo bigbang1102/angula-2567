@@ -1,67 +1,85 @@
+.order-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
 .order-card {
   border: 1px solid #ddd;
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 20px;
   border-radius: 5px;
-  margin: 2px auto; /* ระยะห่างจากขอบด้านบนและขอบซ้ายขวา */
-  padding: 20px; /* ระยะห่างภายใน */
-  max-width: 1200px; /* กำหนดความกว้างสูงสุด */
-  background-color: rgba(173, 232, 255, 0.56); /* เพิ่มพื้นหลังให้ container */
+  margin: 2px;
+  padding: 10px;
+  width: calc(100% / 3 - 20px); /* ปรับขนาดการ์ดแต่ละคำสั่งซื้อ */
+  background-color: rgba(135, 133, 134, 0.56);
+  box-sizing: border-box;
 }
 
-.table {
-  width: 100%;
-  margin-bottom: 15px;
-  border-collapse: collapse;
+.product-card {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
+  transition: transform 0.2s;
+  padding: 5px;
+  flex: 0 0 48%; /* ปรับขนาดการ์ดสินค้า */
+  max-width: 48%;
+  box-sizing: border-box;
+  margin: 5px 1%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.table th,
-.table td {
-  border: 1px solid #352b2b;
-  padding: 12px; /* ปรับขนาด padding ให้มีระยะห่างที่เหมาะสม */
-  text-align: center; /* จัดให้ข้อความอยู่ตรงกลางของเซลล์ */
-}
-
-.table th {
-  background-color: #000000;
-  font-weight: bold;
-  text-transform: uppercase; /* แปลงข้อความให้เป็นตัวพิมพ์ใหญ่ทั้งหมด */
-}
-
-.product-img {
-  width: 80px; /* ลดขนาดของรูปภาพสินค้าให้เล็กลง */
+.product-card img {
+  max-width: 100%;
   height: auto;
-  display: block; /* จัดให้รูปภาพอยู่กึ่งกลางในเซลล์ */
-  margin: auto; /* จัดให้รูปภาพอยู่กึ่งกลางในเซลล์ */
 }
 
-h2,
-h3 {
-  margin-top: 0;
+.product-details {
+  padding: 5px;
+  text-align: center;
+}
+
+.product-details h6 {
+  font-size: 0.9rem;
+  margin: 3px 0;
+}
+
+.product-details p {
+  color: #c51010;
+  font-size: 0.7rem;
+}
+
+.product-details .price,
+.product-details .total-price {
+  color: #f21717;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.product-details .quantity {
+  color: #555;
+  font-size: 0.7rem;
+}
+
+.bg-gradient-orange {
+  background-color: #030303;
 }
 
 .modal-dialog-centered {
   display: flex;
   align-items: center;
-  min-height: calc(100% - 3rem); /* 3rem คือความสูงของ Header ของ Modal */
+  min-height: calc(100% - 3rem);
 }
 
 .modal-content {
   width: 100%;
-  max-width: 800px; /* ปรับขนาดของ Modal ตามต้องการ */
-  margin: auto; /* จัดตำแหน่งให้อยู่กึ่งกลาง */
+  max-width: 600px;
+  margin: auto;
 }
-.product-img {
-  width: 80px; /* ปรับขนาดของรูปภาพ */
-  height: auto;
-  display: block; /* จัดให้รูปภาพอยู่กึ่งกลางในเซลล์ */
-  margin: auto; /* จัดให้รูปภาพอยู่กึ่งกลางในเซลล์ */
-}
-/* ------------------------------------ */
-.bg-gradient-orange {
-  background-color: #e95a1d; /* สีส้ม */
-  /* เพิ่ม gradient หรือการปรับแต่งเพิ่มเติมตามต้องการ */
-}
+
 .form-control-plaintext {
   display: flex;
   align-items: center;
@@ -75,9 +93,29 @@ h3 {
 }
 
 .bg-info {
-  background-color: #5293b7 !important;
+  background-color: #919b97 !important;
+}
+.bg-infoo {
+  background-color: #8bd584 !important;
 }
 
 .text-white {
   color: #fff !important;
+}
+
+.product-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.custom-gray-btn {
+  background-color: #6c757d; /* สีเทาของ Bootstrap */
+  border-color: #6c757d;
+  color: white;
+}
+
+.custom-gray-btn:hover {
+  background-color: #5a6268; /* สีเข้มขึ้นเมื่อ hover */
+  border-color: #545b62;
 }

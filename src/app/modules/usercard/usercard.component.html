@@ -1,60 +1,32 @@
-<style>
-  .order-card {
-    margin-bottom: 20px;
-    /* ปรับขนาดตามที่ต้องการ */
-  }
-</style>
+<div class="order-list-container">
+  <div *ngFor="let order of orderList" class="order-card">
+    <div
+      class="bg-gradient-orange shadow-dark border-radius-lg pt-2 pb-2 d-flex justify-content-between align-items-center">
+      <h4 class="text-white text-capitalize ps-3">คำสั่งซื้อ</h4>
+      <div>
+        <button class="btn custom-gray-btn me-3" (click)="openModal(order)">ดูรายละเอียด</button>
+        <button class="btn btn-danger me-3">ลบ</button>
+      </div>
+    </div>
 
-<div *ngFor="let order of orderList" class="order-card">
-  <div
-    class="bg-gradient-orange shadow-dark border-radius-lg pt-4 pb-3 d-flex justify-content-between align-items-center">
-    <h4 class="text-white text-capitalize ps-3">คำสั่งซื้อ</h4>
-    <button class="btn btn-primary me-3" (click)="openModal(order)">ดูรายละเอียด</button>
+    <div class="product-container mt-3">
+      <div *ngFor="let product of order.productList; let i = index" class="product-card">
+        <img *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" class="product-img" alt="Product Image">
+        <div class="product-details">
+          <h6>{{ product.productName }}</h6>
+          <p>{{ product.productDesc }}</p>
+          <p class="price">ราคา: {{ product.price | currency : '฿ ' }}</p>
+          <p class="quantity">จำนวน: {{ getQuantity(order, product.productId) }} ชิ้น</p>
+          <p class="total-price">ราคารวม: {{ product.price * getQuantity(order, product.productId) | currency : '฿ ' }}
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รูปสินค้า</th>
-        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รายละเอียดสินค้า</th>
-        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ราคา</th>
-        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">จำนวน</th>
-        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ราคารวม</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of order.productList; let i = index">
-        <td>
-          <div class="d-flex px-2 py-1 justify-content-center align-items-center">
-            <div>
-              <img *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" class="product-img"
-                alt="Product Image">
-            </div>
-          </div>
-        </td>
-        <td>
-          <div class="d-flex flex-column justify-content-center">
-            <h6 class="mb-0 text-sm ">{{ product.productName }}</h6>
-            <p style="white-space: nowrap; overflow: hidden; text-overflow : ellipsis; max-width: 80ch;">{{
-              product.productDesc }}</p>
-          </div>
-        </td>
-        <td class="align-middle text-center text-sm">
-          <span class="text-secondary text-xs font-weight-bold">{{ product.price | currency : ' ฿ ' }}</span>
-        </td>
-        <td class="align-middle text-center">
-          <span class="text-secondary text-xs font-weight-bold">{{ getQuantity(order, product.productId) }} ชิ้น</span>
-        </td>
-        <td class="align-middle text-center text-sm">
-          <span class="text-secondary text-danger font-weight-bold">{{ product.price * getQuantity(order,
-            product.productId) | currency : ' ฿ ' }}</span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>
 
 <!-- Bootstrap Modal -->
+
 <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
@@ -62,10 +34,9 @@
         <h5 class="modal-title" id="orderModalLabel">รายละเอียดที่อยู่เบอร์โทร</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-
       <div class="modal-body">
         <div class="table-responsive">
-          <form>
+          <form [formGroup]="updateOrder" (submit)="onSubmit()">
             <div class="form-group row">
               <label for="userName" class="text-center">ชื่อ-นามสกุล</label>
               <div class="col-12">
@@ -99,34 +70,35 @@
             <div class="form-group row">
               <label for="address" class="text-center">ที่อยู่</label>
               <div class="col-12">
-                <p class="form-control-plaintext text-center border rounded p-2 bg-info text-white">{{
-                  selectedOrder?.address }}</p>
+                <input formControlName="address"
+                  class="form-control-plaintext text-center border rounded p-2 bg-infoo text-white">
               </div>
             </div>
             <div class="form-group row">
               <label for="province" class="text-center">จังหวัด</label>
               <div class="col-12">
-                <p class="form-control-plaintext text-center border rounded p-2 bg-info text-white">{{
-                  selectedOrder?.province }}</p>
+                <input formControlName="province"
+                  class="form-control-plaintext text-center border rounded p-2 bg-infoo text-white">
               </div>
             </div>
             <div class="form-group row">
               <label for="zipcode" class="text-center">รหัสไปรษณีย์</label>
               <div class="col-12">
-                <p class="form-control-plaintext text-center border rounded p-2 bg-info text-white">{{
-                  selectedOrder?.zipcode }}</p>
+                <input formControlName="zipcode"
+                  class="form-control-plaintext text-center border rounded p-2 bg-infoo text-white">
               </div>
             </div>
             <div class="form-group row">
               <div class="col-12 text-center mt-3">
-                <button name="submit" type="submit" class="btn btn-primary">Update My Address</button>
+                <button name="submit" class="btn btn-primary">Update My Address</button>
               </div>
             </div>
+
           </form>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
+          </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">ปิด</button>
       </div>
     </div>
   </div>

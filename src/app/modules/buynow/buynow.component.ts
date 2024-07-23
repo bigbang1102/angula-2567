@@ -13,6 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   providers: [CallserviceService]
 })
 export class BuynowComponent implements OnInit, OnDestroy {
+  selectedCardType: string = '';
   cartItems: any[] = [];
   totalCost: number = 0;
   hours: number = 0;
@@ -24,9 +25,13 @@ export class BuynowComponent implements OnInit, OnDestroy {
   userId: any;
   userDetail: any;
   title: any;
+  promptpayNumber = '0934731150'; // ใส่หมายเลข PromptPay ที่ใช้
+
+  qrCodeUrl: string = ''; // เพิ่มตัวแปรสำหรับเก็บ URL ของ QR Code
 
   formData: FormGroup;
   isSubmitting: boolean = false; // เพิ่มตัวแปร isSubmitting
+  linkPrompray: any;
 
   constructor(
     private router: Router,
@@ -60,7 +65,6 @@ export class BuynowComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.startCountdown();
     this.addEventListeners();
     this.userId = this.activated.snapshot.paramMap.get("userId");
     if (this.userId) {
@@ -85,6 +89,8 @@ export class BuynowComponent implements OnInit, OnDestroy {
         // Handle case where userDetail is not found in sessionStorage
       }
     }
+    // คำนวณและสร้าง URL ของ QR Code
+    this.generateQRCode();
   }
 
   ngOnDestroy(): void {
@@ -130,6 +136,18 @@ export class BuynowComponent implements OnInit, OnDestroy {
     this.totalCost = this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }
 
+  generateQRCode() {
+    // เพิ่มราคาทั้งหมดอีก 40 หน่วย
+    const totalWithExtra = this.totalCost + 40;
+    // สร้าง URL ของ QR Code โดยใช้หมายเลข PromptPay และราคาที่เพิ่ม 40 หน่วย
+    this.qrCodeUrl = `https://promptpay.io/${this.promptpayNumber}/${totalWithExtra}.png`;
+    console.log(this.qrCodeUrl);
+    console.log(this.totalCost);
+  }
+
+  selectCardType(type: string): void {
+    this.selectedCardType = type;
+  }
   onSubmit(): void {
     if (this.isSubmitting) {
       return; // ป้องกันการกดปุ่มซ้ำ
@@ -142,8 +160,14 @@ export class BuynowComponent implements OnInit, OnDestroy {
       productId: this.cartItems.map(item => item.productId)
     });
 
+    // ส่ง totalCost ที่เพิ่ม 40 หน่วยไปยัง backend
+    const orderData = {
+      ...this.formData.value,
+      totalCost: this.totalCost + 40 // เพิ่มราคาทั้งหมดอีก 40 หน่วย
+    };
+
     // Submit formData to backend
-    this.callService.saveorder(this.formData.value)
+    this.callService.saveorder(orderData)
       .subscribe(
         response => {
           console.log('Saved successfully:', response);
@@ -170,26 +194,5 @@ export class BuynowComponent implements OnInit, OnDestroy {
           this.isSubmitting = false; // ตั้งค่าสถานะว่าการส่งข้อมูลเสร็จสิ้น
         }
       );
-  }
-
-  startCountdown() {
-    this.intervalId = setInterval(() => {
-      if (this.seconds > 0) {
-        this.seconds--;
-      } else {
-        if (this.minutes > 0) {
-          this.minutes--;
-          this.seconds = 59;
-        } else {
-          if (this.hours > 0) {
-            this.hours--;
-            this.minutes = 59;
-            this.seconds = 59;
-          } else {
-            clearInterval(this.intervalId);
-          }
-        }
-      }
-    }, 1000);
   }
 }

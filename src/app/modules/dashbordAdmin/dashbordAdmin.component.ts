@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CallserviceService } from '../services/callservice.service';
@@ -11,7 +11,6 @@ import { CallserviceService } from '../services/callservice.service';
 })
 export class DashbordAdminComponent implements OnInit {
 
-
   constructor(
     private formBuilder: FormBuilder,
     private callService: CallserviceService,
@@ -19,19 +18,22 @@ export class DashbordAdminComponent implements OnInit {
     private activated: ActivatedRoute,
   ) { }
 
-  userDetail: any
-  roleList: any
-  userId: any
-  title: any
-
-  updateForm = this.formBuilder.group({
+  userDetail: any;
+  roleList: any;
+  userId: any;
+  title: any;
+  user: any;
+  imgUser: any;
+  idImg: any
+  fileimg: any;
+  updateForm: FormGroup = this.formBuilder.group({
     fristName: '',
     lastName: '',
     phone: '',
     age: '',
     roleId: '',
     userName: ''
-  })
+  });
 
   ngOnInit() {
     this.getAllRole();
@@ -40,20 +42,43 @@ export class DashbordAdminComponent implements OnInit {
     if (this.userId) {
       this.callService.getByUserId(this.userId).subscribe(res => {
         if (res.data) {
-          this.title = "Your Profile User"
-          this.userDetail = res.data
-          this.setDataForm(this.userDetail)
+          this.title = "Your Profile User";
+          this.userDetail = res.data;
+          this.setDataForm(this.userDetail);
+          this.loadUserImage(); // Load image here
         }
-      })
+      });
     } else {
-      this.title = "Your Profile Login"
-      let userDetailSession: any = sessionStorage.getItem("userDetail")
-      this.userDetail = JSON.parse(userDetailSession)
-      this.setDataForm(this.userDetail)
+      this.title = "Your Profile Login";
+      let userDetailSession: any = sessionStorage.getItem("userDetail");
+      this.userDetail = JSON.parse(userDetailSession);
+      this.setDataForm(this.userDetail);
+      this.getData(this.userDetail.userId);
+      this.loadUserImage(); // Load image here
     }
-
   }
 
+  loadUserImage() {
+    this.callService.userImage(this.userDetail.userId).subscribe(res => {
+      console.log('Response from userImage API:', res);
+      if (res && res.data && res.data.img) {
+        this.imgUser = res.data.img; // Set base64 string directly
+        this.idImg = res.data.id;
+        console.log('Image ID:', this.idImg);
+        console.log('Image Data:', this.imgUser);
+      }
+    });
+  }
+  // Function to convert binary data to base64 string
+  arrayBufferToBase64(buffer: any) {
+    let binary = '';
+    const bytes = new Uint8Array(buffer);
+    const len = bytes.byteLength;
+    for (let i = 0; i < len; i++) {
+      binary += String.fromCharCode(bytes[i]);
+    }
+    return window.btoa(binary);
+  }
   setDataForm(data: any) {
     this.updateForm.patchValue({
       fristName: data.fristName,
@@ -62,7 +87,20 @@ export class DashbordAdminComponent implements OnInit {
       age: data.age,
       roleId: data.roleId,
       userName: data.userName,
-    })
+    });
+  }
+
+  setProfileForm = this.formBuilder.group({
+    Img: '',
+    userId: ''
+  })
+
+  getData(userId: any) {
+    this.callService.getByUserId(userId).subscribe(res => {
+      if (res) {
+        this.user = res.data;
+      }
+    });
   }
 
   getAllRole() {
@@ -70,17 +108,23 @@ export class DashbordAdminComponent implements OnInit {
       if (res) {
         this.roleList = res;
       }
-    })
+    });
   }
 
   onSubmit() {
-    console.log(this.updateForm.value)
-
-    const data = this.updateForm.value
+    Swal.fire({
+      title: 'คุณต้องการแก้ไขข้อมูลใช่หรือไม่?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'ตกลง',
+      cancelButtonText: 'ยกเลิก'
+    })
+    const data = this.updateForm.value;
 
     this.callService.updateProfile(data, this.userDetail.userId).subscribe(res => {
       if (res.data) {
-
         Swal.fire({
           icon: 'success',
           title: 'สำเร็จ!',
@@ -89,12 +133,11 @@ export class DashbordAdminComponent implements OnInit {
         });
 
         if (this.userId) {
-          this.router.navigate(['/dashbord-admin' + this.userId]);
+          this.router.navigate(['/profile/' + this.userId]);
         } else {
-          this.getUserById(res.data)
-          this.router.navigate(['/dashbord-admin']);
+          this.getUserById(res.data);
+          this.router.navigate(['/profile']);
         }
-
       } else {
         Swal.fire({
           icon: 'warning',
@@ -102,21 +145,56 @@ export class DashbordAdminComponent implements OnInit {
           text: 'กรุณาตรวจสอบข้อมูล ด้วยค่ะ',
           confirmButtonText: 'ตกลง',
         });
-
       }
-
-    })
-
+    });
   }
 
   getUserById(userId: any) {
     this.callService.getByUserId(userId).subscribe(res => {
       if (res.data) {
-        this.setDataForm(res.data)
-        sessionStorage.removeItem("userDetail")
-        sessionStorage.setItem("userDetail", JSON.stringify(res.data))
+        this.setDataForm(res.data);
+        sessionStorage.removeItem("userDetail");
+        sessionStorage.setItem("userDetail", JSON.stringify(res.data));
       }
-    })
+    });
   }
 
+  onChangePictureClick() {
+    document.getElementById('fileInput')!.click();
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.fileimg = file
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        this.imgUser = e.target.result.split(',')[1];
+        Swal.fire({
+          icon: 'question',
+          title: 'Are your sure for update?',
+          showConfirmButton: true,
+          showCancelButton: true
+        }).then((result) => {
+          if (result.isConfirmed) {
+            const data = new FormData();
+            data.append('Img', this.fileimg as any);
+            data.append('userId', this.userDetail.userId as any);
+            this.callService.updateProfileAvatar(data, this.idImg).subscribe(res => {
+              if (res) {
+                Swal.fire({
+                  icon: 'success',
+                  title: 'สำเร็จ!',
+                  text: 'อัปเดตรูปโปรไฟล์สำเร็จ',
+                  confirmButtonText: 'ตกลง',
+                });
+              }
+            });
+          }
+        })
+
+      };
+      reader.readAsDataURL(file);
+    }
+  }
 }

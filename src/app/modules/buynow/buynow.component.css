@@ -1,108 +1,81 @@
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 20px;
+}
 
-  .cart-item-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    margin-right: 20px;
-  }
-  
+.quantity-button {
+  background-color: #2c292b;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin: 0 5px;
+}
 
-  .quantity-button {
-    background-color: #8e8e8e;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    font-size: 0.9em;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin: 0 5px;
-  } 
-  
-   .quantity-button:hover {
-    background-color: #0056b3;
-  } 
-  
-  .remove-from-cart-button {
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    font-size: 0.9em;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-  }
-  
-  .remove-from-cart-button:hover {
-    background-color: #cc0000;
-  }
-  
+.quantity-button:hover {
+  background-color: #6e8aa9;
+}
 
-  
+.remove-from-cart-button {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  font-size: 0.9em;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
 
-  
-  .cart-item-image {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    margin-right: 20px;
-  }
+.remove-from-cart-button:hover {
+  background-color: #cc0000;
+}
 
-  .quantity-button {
-    background-color: #c432a7;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    font-size: 0.9em;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin: 0 5px;
-  }
-  
-  .quantity-button:hover {
-    background-color: #6e8aa9;
-  }
-  
-  .remove-from-cart-button {
-    background-color: #ff0000;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    font-size: 0.9em;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    margin-top: 10px;
-  }
-  
-  .remove-from-cart-button:hover {
-    background-color: #cc0000;
-  }
+.custom-dark-gray {
+  background-color: #343a40; /* สีเทาดำ */
+  color: white; /* สีข้อความ */
+}
 
-    .btn-success {
-      cursor: pointer;
-      z-index: 1;
-    }
-    
-    .large-text-button {
-      font-size: 20px; /* ปรับขนาดตัวหนังสือตามต้องการ */
-      background-color: rgb(39, 99, 211); /* สีพื้นหลังเป็นสีดำ */
-      color: white; /* สีของตัวหนังสือเป็นสีขาว */
-      width: 200px; /* ปรับความกว้างตามต้องการ */
-    }
-  
-    .container-center {
-      display: flex;
-      flex-direction: column; /* จัดวางองค์ประกอบในแนวตั้ง */
-      justify-content: center; /* จัดให้อยู่ตรงกลางแนวนอน */
-      align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
-      height: 100%; /* ตั้งความสูงของ container ให้เต็ม modal body */
-    }
-  
-    .img-fluid {
-      max-width: 100%; /* ปรับขนาดรูปภาพให้เต็มที่หากจำเป็น */
-      height: auto; /* รักษาอัตราส่วนของรูปภาพ */
-    }
+.custom-input {
+  background-color: white; /* สีพื้นหลังของ input */
+  color: black; /* สีข้อความใน input */
+}
+
+.btn-success {
+  cursor: pointer;
+  z-index: 1;
+}
+
+.large-text-button {
+  font-size: 20px; /* ปรับขนาดตัวหนังสือตามต้องการ */
+  background-color: rgb(63, 64, 65); /* สีพื้นหลังเป็นสีดำ */
+  color: white; /* สีของตัวหนังสือเป็นสีขาว */
+  width: 200px; /* ปรับความกว้างตามต้องการ */
+}
+
+.container-center {
+  display: flex;
+  flex-direction: column; /* จัดวางองค์ประกอบในแนวตั้ง */
+  justify-content: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+  align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+  height: 100%; /* ตั้งความสูงของ container ให้เต็ม modal body */
+}
+
+.img-fluid {
+  max-width: 100%; /* ปรับขนาดรูปภาพให้เต็มที่หากจำเป็น */
+  height: auto; /* รักษาอัตราส่วนของรูปภาพ */
+}
+.card-type-icons i {
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.card-type-icons i.active {
+  color: #007bff; /* เปลี่ยนเป็นสีที่ต้องการเมื่อถูกเลือก */
+}

@@ -128,6 +128,23 @@ export class CallserviceService {
   deleteOrder(ordersId: any): Observable<any> {
     return this.http.delete(API_ENDPOINT.concat('/order/delete?ordersId=' + ordersId));
   }
+  updateOrder(data: any, orderId: any): Observable<any> {
+    const body = JSON.stringify(data);
+    return this.http.put<any>(API_ENDPOINT.concat('/order/update/' + orderId), body, httpOptions)
+  }
+
+  userImage(userId: any): Observable<any> {
+    return this.http.get<any>(API_ENDPOINT.concat('/imguser/getById?id=' + userId))
+  }
+
+  usersImage(userId: any): Observable<any> {
+    return this.http.get<any>(API_ENDPOINT.concat('/imguser/getAll' + userId))
+  }
+
+  updateProfileAvatar(data: FormData, userId: any): Observable<any> {
+    return this.http.put<any>(API_ENDPOINT.concat('/imguser/update/' + userId), data)
+  }
+
 }
 
 

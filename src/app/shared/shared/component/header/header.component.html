@@ -1,4 +1,4 @@
-<header class="p-3 bg-dark text-white">
+<header class="p-2 text-white" style="background-color: #2f2f2f;">
   <div class="container">
     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
       <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
@@ -8,56 +8,98 @@
       </a>
 
       <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li *ngIf="null == userDetail"><a [routerLink]="['/']" routerLinkActive="router-link-active"
-            class="btn btn-outline-success me-2">หน้าหลัก</a></li>
-        <li *ngIf="null != userDetail"><a [routerLink]="['/home']" routerLinkActive="router-link-active"
-            class="btn btn-outline-success me-2">หน้าหลัก</a></li>
+        <li *ngIf="null == userDetail">
+          <a [routerLink]="['/']" routerLinkActive="router-link-active" class="btn btn-outline-light me-2">
+            หน้าหลัก
+          </a>
+        </li>
+        <li *ngIf="null != userDetail">
+          <a [routerLink]="['/home']" routerLinkActive="router-link-active" class="btn btn-outline-light me-2">
+            หน้าหลัก
+          </a>
+        </li>
 
-        <li *ngIf="null != userDetail"><a [routerLink]="['/dashbord-admin']" routerLinkActive="router-link-active"
-            class="btn btn-sm btn-outline-secondary">โปรไฟล์</a></li>
+        <li *ngIf="null != userDetail">
+          <a [routerLink]="['/dashbord-admin']" routerLinkActive="router-link-active"
+            class="btn btn-sm btn-outline-light">
+            โปรไฟล์
+          </a>
+        </li>
 
-        <li *ngIf="null != userDetail"><a [routerLink]="['/card']" routerLinkActive="router-link-active"
-            class="btn btn-sm btn-outline-secondary">ข้อมูลสินค้า</a></li>
-        <li *ngIf="null == userDetail"><a [routerLink]="['/#']" routerLinkActive="router-link-active"
-            class="btn btn-sm btn-outline-secondary">ติดต่อเเอดมิน</a></li>
-        <!-- <li *ngIf="null != userDetail"><a [routerLink]="['/#']" routerLinkActive="router-link-active"
-            class="btn btn-sm btn-outline-secondary">ติดต่อเเอดมิน</a></li> -->
+        <li *ngIf="null != userDetail">
+          <a [routerLink]="['/card']" routerLinkActive="router-link-active" class="btn btn-sm btn-outline-light">
+            ข้อมูลสินค้า
+          </a>
+        </li>
+        <li *ngIf="null == userDetail">
+          <a [routerLink]="['/#']" routerLinkActive="router-link-active" class="btn btn-sm btn-outline-light">
+            ติดต่อเเอดมิน
+          </a>
+        </li>
 
-        <li *ngIf="null == userDetail"><a [routerLink]="['/#']" routerLinkActive="router-link-active"
-            class="btn btn-sm btn-outline-secondary">วิธีสมัคร</a></li>
-        <li *ngIf="null != userDetail"><a [routerLink]="['/#']" routerLinkActive="router-link-active"
-            class="btn btn-sm btn-outline-secondary">วิธีสมัคร</a></li>
+        <li *ngIf="null == userDetail">
+          <a [routerLink]="['/#']" routerLinkActive="router-link-active" class="btn btn-sm btn-outline-light">
+            วิธีสมัคร
+          </a>
+        </li>
+        <li *ngIf="null != userDetail">
+          <a [routerLink]="['/#']" routerLinkActive="router-link-active" class="btn btn-sm btn-outline-light">
+            วิธีสมัคร
+          </a>
+        </li>
 
-        <li *ngIf="null != userDetail"><a [routerLink]="['/usercart']" routerLinkActive="router-link-active"
-            class="btn btn-sm btn-outline-secondary">คำสั่งซื้อ</a></li>
+        <li *ngIf="null != userDetail">
+          <a [routerLink]="['/usercart']" routerLinkActive="router-link-active" class="btn btn-sm btn-outline-light">
+            คำสั่งซื้อ
+          </a>
+        </li>
+        <li *ngIf="null == userDetail">
+          <a [routerLink]="['/usercart']" routerLinkActive="router-link-active" class="btn btn-sm btn-outline-light">
+            คำสั่งซื้อ
+          </a>
+        </li>
 
-        <li *ngIf="null == userDetail"><a [routerLink]="['/usercart']" routerLinkActive="router-link-active"
-            class="btn btn-sm btn-outline-secondary">คำสั่งซื้อ</a></li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a [routerLink]="['/manage-user']" routerLinkActive="router-link-active" class="btn btn-sm btn-outline-light">
+            จัดการลูกค้า
+          </a>
+        </li>
 
-        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a [routerLink]="['/manage-user']"
-            routerLinkActive="router-link-active" class="btn btn-sm btn-outline-secondary">จัดการลูกค้า</a></li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a [routerLink]="['/manage-product']" routerLinkActive="router-link-active"
+            class="btn btn-sm btn-outline-light">
+            จัดการสินค้า
+          </a>
+        </li>
 
-        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a [routerLink]="['/manage-product']"
-            class="btn btn-sm btn-outline-secondary">จัดการสินค้า</a></li>
+        <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a [routerLink]="['/adminorder']" routerLinkActive="router-link-active" class="btn btn-sm btn-outline-light">
+            จัดการข้อมูลสั่งซื้อ
+          </a>
+        </li>
 
-        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a [routerLink]="['/adminorder']"
-            class="btn btn-sm btn-outline-secondary">จัดการข้อมูลสั่งซื้อ</a></li>
-
-        <li *ngIf="null != userDetail && userDetail.roleId == 1"><a href="#" class="btn btn-sm btn-outline-secondary"
-            [routerLink]="['/report']">รายงาน</a></li>
-
+        <li *ngIf="null != userDetail && userDetail.roleId == 1">
+          <a href="#" class="btn btn-sm btn-outline-light" [routerLink]="['/report']">
+            รายงาน
+          </a>
+        </li>
       </ul>
 
       <div class="text-end" *ngIf="null == userDetail">
         <button type="button" class="btn btn-outline-light me-2" [routerLink]="['/login']"
-          routerLinkActive="router-link-active">Login</button>
+          routerLinkActive="router-link-active">
+          Login
+        </button>
         <button type="button" class="btn btn-warning" [routerLink]="['/register']"
-          routerLinkActive="router-link-active">Sign-up</button>
+          routerLinkActive="router-link-active">
+          Sign-up
+        </button>
       </div>
       <div class="text-end" *ngIf="null != userDetail">
-        <button type="button" class="btn btn-danger" (click)="logout()">ออกจากระบบ</button>
+        <button type="button" class="btn btn-danger" (click)="logout()">
+          ออกจากระบบ
+        </button>
       </div>
     </div>
   </div>
-
 </header>

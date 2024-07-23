@@ -24,8 +24,10 @@
                             </li>
                         </ul>
                         <div class="card-body">
-                            <span class="text-secondary text-danger font-weight-bold">ราคารวม: {{ (product.price *
-                                getQuantity(order, product.productId)) | currency:'THB ' }}</span>
+                            <span class="text-secondary text-danger font-weight-bold">
+                                ราคารวม: {{ (product.price * getQuantity(order, product.productId) + 40) |
+                                currency:'THB' }}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -94,4 +96,7 @@
             </div>
         </div>
     </div>
+</div>
+<div *ngIf="userIdToDelete">
+    <p>ผู้ใช้ที่มีรหัส {{ userIdToDelete }} ต้องการลบคำสั่งซื้อ</p>
 </div>

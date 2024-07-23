@@ -4,7 +4,7 @@
     margin: 2px auto; /* ระยะห่างจากขอบด้านบนและขอบซ้ายขวา */
     padding: 20px; /* ระยะห่างภายใน */
     max-width: 1200px; /* กำหนดความกว้างสูงสุด */
-    background-color: rgb(125, 224, 249); /* เพิ่มพื้นหลังให้ container */
+    background-color: rgb(36, 37, 38); /* เพิ่มพื้นหลังให้ container */
 }
 
 .carousel-inner img {
@@ -22,7 +22,7 @@
 }
 
 .product-card {
-    background-color: rgb(233, 231, 231);
+    background-color: rgb(252, 252, 252);
     border-radius: 10px;
     box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -37,8 +37,8 @@
 
 .product-title {
     padding: 10px;
-    background: linear-gradient(to bottom right, #1077bb, #d14883);
-    color: rgb(162, 44, 44);
+    background: linear-gradient(to bottom right, #f9f9f9, #070606);
+    color: rgb(13, 7, 7);
 }
 
 .label h2 {
@@ -57,14 +57,14 @@
 }
 
 .product-name {
-    color: #333;
+    color: #bab5b5;
     font-size: 16px;
     font-weight: bold;
     margin: 0;
 }
 
 .product-author {
-    color: #555;
+    color: #ffffff;
     margin: 5px 0 0;
 }
 
@@ -89,7 +89,7 @@
 }
 
 .add-to-cart-button {
-    background-color: #0441c3;
+    background-color: #575455;
     color: white;
     border: none;
     padding: 5px 10px; /* ลดขนาดปุ่ม */
@@ -105,7 +105,7 @@
 }
 
 .add-to-cart-button:hover {
-    background-color: #08a2d1;
+    background-color: #aab3b5;
 }
 
 .cart-container {
@@ -181,7 +181,7 @@
     top: 20px;
     right: 280px;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #1e1e1f;
     color: white;
     border: none;
     border-radius: 5px;
