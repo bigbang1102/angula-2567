@@ -1,30 +1,32 @@
-<div class="order-list-container">
-  <div *ngFor="let order of orderList" class="order-card">
-    <div
-      class="bg-gradient-orange shadow-dark border-radius-lg pt-2 pb-2 d-flex justify-content-between align-items-center">
-      <h4 class="text-white text-capitalize ps-3">คำสั่งซื้อ</h4>
-      <div>
-        <button class="btn custom-gray-btn me-3" (click)="openModal(order)">ดูรายละเอียด</button>
-        <button class="btn btn-danger me-3">ลบ</button>
+<div class="full-screen">
+  <div class="order-list-container">
+    <div *ngFor="let order of orderList" class="order-card">
+      <div
+        class="bg-gradient-orange shadow-dark border-radius-lg pt-2 pb-2 d-flex justify-content-between align-items-center">
+        <h4 class="text-white text-capitalize ps-3">คำสั่งซื้อ</h4>
+        <div>
+          <button class="btn custom-gray-btn me-3" (click)="openModal(order)">ดูรายละเอียด</button>
+          <button class="btn btn-danger me-3">ลบ</button>
+        </div>
       </div>
-    </div>
 
-    <div class="product-container mt-3">
-      <div *ngFor="let product of order.productList; let i = index" class="product-card">
-        <img *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" class="product-img" alt="Product Image">
-        <div class="product-details">
-          <h6>{{ product.productName }}</h6>
-          <p>{{ product.productDesc }}</p>
-          <p class="price">ราคา: {{ product.price | currency : '฿ ' }}</p>
-          <p class="quantity">จำนวน: {{ getQuantity(order, product.productId) }} ชิ้น</p>
-          <p class="total-price">ราคารวม: {{ product.price * getQuantity(order, product.productId) | currency : '฿ ' }}
-          </p>
+      <div class="product-container mt-3">
+        <div *ngFor="let product of order.productList; let i = index" class="product-card">
+          <img *ngIf="product.imgList.length > 0" [src]="product.imgList[0]" class="product-img" alt="Product Image">
+          <div class="product-details">
+            <h6>{{ product.productName }}</h6>
+            <p>{{ product.productDesc }}</p>
+            <p class="price">ราคา: {{ product.price | currency : '฿ ' }}</p>
+            <p class="quantity">จำนวน: {{ getQuantity(order, product.productId) }} ชิ้น</p>
+            <p class="total-price">ราคารวม: {{ product.price * getQuantity(order, product.productId) | currency : '฿ '
+              }}
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
 <!-- Bootstrap Modal -->
 
 <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">

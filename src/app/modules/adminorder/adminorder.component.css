@@ -6,7 +6,7 @@
   margin: 2px auto; /* ระยะห่างจากขอบด้านบนและขอบซ้ายขวา */
   padding: 20px; /* ระยะห่างภายใน */
   max-width: 1200px; /* กำหนดความกว้างสูงสุด */
-  background-color: rgba(173, 232, 255, 0.56); /* เพิ่มพื้นหลังให้ container */
+  background-color: rgba(125, 125, 125, 0.56); /* เพิ่มพื้นหลังให้ container */
 }
 
 .table {

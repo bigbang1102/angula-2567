@@ -1,33 +1,20 @@
-.card {
-    color: rgba(5, 5, 5, 0.914);
-    background-size: cover;
-    background-position: center;
-    width: 100%;
+.full-screen {
+  height: 200vh;
+  overflow: hidden;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: url('https://wallpapers.com/images/hd/para-commandos-with-m16-celeinai0nz09klc.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
-  }
 
   .form-label,
   .form-control {
     color: rgb(0, 0, 0);
   }
-
-  .form-control::placeholder {
-    color: rgba(0, 0, 0, 0.6);
-
-  }
-
-  .form-container {
-    border: 2px solid rgba(177, 171, 171, 0.912);
-    padding: 20px;
-    border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.305);
-
-  }
-
-  .form-label {
-    color: black;
-
-  }/* profile.component.css */
 
 /* Style for form labels */
 .col-form-label {
@@ -37,13 +24,13 @@
   
   /* Style for input fields */
   .form-control {
-    border: 1px solid #ccc; /* Light gray border */
+    border: 1px solid #0a0303d8; /* Light gray border */
     border-radius: 5px; /* Rounded corners */
   }
   
   /* Style for select dropdown */
   .custom-select {
-    border: 1px solid #ccc; /* Light gray border */
+    border: 1px solid #cccccc51; /* Light gray border */
     border-radius: 5px; /* Rounded corners */
   }
   

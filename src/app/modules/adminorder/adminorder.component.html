@@ -41,49 +41,50 @@
                     <tr>
                         <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ไอดี
                             ออเดอร์</th>
-                        <td>{{ order.ordersId }}</td>
+                        <td class="text-white">{{ order.ordersId }}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ไอดี
                             ผู้ใช้</th>
-                        <td>{{ order.userId }}</td>
+                        <td class="text-white">{{ order.userId }}</td>
                     </tr>
                     <tr *ngIf="order.userData">
                         <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                             ชื่อ-นามสกุล</th>
-                        <td>{{ order.userData.firstName }} {{ order.userData.lastName }}</td>
+                        <td class="text-white">{{ order.userData.firstName }} {{ order.userData.lastName }}</td>
                     </tr>
                     <tr *ngIf="order.userData">
                         <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                             เบอร์ติดต่อ</th>
-                        <td>{{ order.userData.phone }}</td>
+                        <td class="text-white">{{
+                            order.userData.phone }}</td>
                     </tr>
                     <tr>
                         <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                             สถานะการชำระเงิน</th>
-                        <td>
+                        <td class="text-white">
                             <span *ngIf="order.status == '1'"
                                 class="badge badge-sm bg-gradient-success">ชำระเงินแล้ว</span>
                             <span *ngIf="order.status != '1'"
                                 class="badge badge-sm bg-gradient-danger">ยังไม่ชำระเงิน</span>
                         </td>
                     </tr>
-                    <tr>
+                    <tr class="text-white">
                         <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                             วันที่สั่งสินค้า</th>
                         <td>{{ order.createDate | date: 'medium' }}</td>
                     </tr>
-                    <tr>
+                    <tr class="text-white">
                         <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                             ที่อยู่</th>
                         <td>{{ order.address }}</td>
                     </tr>
-                    <tr>
+                    <tr class="text-white">
                         <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                             จังหวัด</th>
                         <td>{{ order.province }}</td>
                     </tr>
-                    <tr>
+                    <tr class="text-white">
                         <th scope="row" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                             รหัสไปรษณีย์</th>
                         <td>{{ order.zipcode }}</td>

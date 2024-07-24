@@ -39,13 +39,14 @@ export class DashbordAdminComponent implements OnInit {
     this.getAllRole();
 
     this.userId = this.activated.snapshot.paramMap.get("userId");
+    console.log('kkk', this.userId)
+
     if (this.userId) {
       this.callService.getByUserId(this.userId).subscribe(res => {
         if (res.data) {
           this.title = "Your Profile User";
           this.userDetail = res.data;
           this.setDataForm(this.userDetail);
-          this.loadUserImage(); // Load image here
         }
       });
     } else {
@@ -54,31 +55,17 @@ export class DashbordAdminComponent implements OnInit {
       this.userDetail = JSON.parse(userDetailSession);
       this.setDataForm(this.userDetail);
       this.getData(this.userDetail.userId);
-      this.loadUserImage(); // Load image here
     }
-  }
-
-  loadUserImage() {
+    console.log('jjj', this.userDetail)
     this.callService.userImage(this.userDetail.userId).subscribe(res => {
-      console.log('Response from userImage API:', res);
-      if (res && res.data && res.data.img) {
-        this.imgUser = res.data.img; // Set base64 string directly
-        this.idImg = res.data.id;
-        console.log('Image ID:', this.idImg);
-        console.log('Image Data:', this.imgUser);
+      if (res.data) {
+        console.log(res)
+        this.imgUser = res.data.img;
+        this.idImg = res.data.id
       }
     });
   }
-  // Function to convert binary data to base64 string
-  arrayBufferToBase64(buffer: any) {
-    let binary = '';
-    const bytes = new Uint8Array(buffer);
-    const len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return window.btoa(binary);
-  }
+
   setDataForm(data: any) {
     this.updateForm.patchValue({
       fristName: data.fristName,
@@ -180,7 +167,8 @@ export class DashbordAdminComponent implements OnInit {
             const data = new FormData();
             data.append('Img', this.fileimg as any);
             data.append('userId', this.userDetail.userId as any);
-            this.callService.updateProfileAvatar(data, this.idImg).subscribe(res => {
+            console.log("this.userDetail.userId", this.userDetail.userId)
+            this.callService.updateProfileAvatar(data, this.userDetail.userId).subscribe(res => {
               if (res) {
                 Swal.fire({
                   icon: 'success',

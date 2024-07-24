@@ -1,10 +1,27 @@
 
+.full-screen {
+    height: 200vh;
+    overflow: hidden;
 
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://wallpapers.com/images/hd/para-commandos-with-m16-celeinai0nz09klc.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); 
+}
 .container {
     margin: 2px auto; /* ระยะห่างจากขอบด้านบนและขอบซ้ายขวา */
     padding: 20px; /* ระยะห่างภายใน */
     max-width: 1200px; /* กำหนดความกว้างสูงสุด */
-    background-color: rgb(36, 37, 38); /* เพิ่มพื้นหลังให้ container */
+    background-color: rgba(36, 37, 38, 0.544); /* เพิ่มพื้นหลังให้ container */
 }
 
 .carousel-inner img {
@@ -122,7 +139,6 @@
     overflow-y: auto;
     z-index: 1000;
 }
-
 .cart-container.show {
     right: 0;
 }
@@ -200,4 +216,38 @@
     margin-left: 5px;
     margin-top: -10px;
     margin-right: -10px;
+}
+.image-row {
+    display: flex;
+    justify-content: center; /* จัดกึ่งกลางในแนวนอน */
+    align-items: center;     /* จัดกึ่งกลางในแนวตั้ง */
+    gap: 10px;               /* ช่องว่างระหว่างรูปภาพ */
+    padding: 20px;           /* ช่องว่างภายในรอบ ๆ รูปภาพ */
+}
+
+.image-container {
+    flex: 1;                  /* ปรับขนาด container ให้มีขนาดเท่ากัน */
+    max-width: 33%;           /* จำกัดขนาดสูงสุดที่ 33% ของ container หลัก */
+    box-sizing: border-box;   /* รวม padding และ border ในการคำนวณขนาด */
+}
+
+.image-container img {
+    width: 100%;              /* ทำให้รูปภาพเต็ม container */
+    height: auto;             /* รักษาอัตราส่วน */
+}
+.icon-button {
+    display: flex;
+    justify-content: center; /* จัดกลางในแนวนอน */
+    align-items: center;     /* จัดกลางในแนวตั้ง */
+    background: none;
+    border: none;
+    cursor: pointer;
+          /* เพิ่ม padding เพื่อให้ปุ่มใหญ่ขึ้น */
+}
+
+.icon-button svg {
+    width: 24px;             /* ขนาดของไอคอน */
+    height: 24px;
+    color: rgb(230, 6, 6);             /* สีของไอคอน */
+           /* ช่องว่างระหว่างไอคอน */
 }
