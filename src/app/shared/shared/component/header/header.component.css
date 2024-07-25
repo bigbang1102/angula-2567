@@ -1,1 +1,13 @@
 
+    .user-img-container {
+      width: 45px;
+      height: 45px;
+    }
+  .user-img {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .nav {
+    margin-left: 10px; /* ปรับให้ .nav ไม่เพิ่มช่องว่างทางซ้าย */
+  }

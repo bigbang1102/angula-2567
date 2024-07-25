@@ -25,13 +25,14 @@ export class BuynowComponent implements OnInit, OnDestroy {
   userId: any;
   userDetail: any;
   title: any;
-  promptpayNumber = '0934731150'; // ใส่หมายเลข PromptPay ที่ใช้
+  promptpayNumber = '0626922817'; // ใส่หมายเลข PromptPay ที่ใช้
 
   qrCodeUrl: string = ''; // เพิ่มตัวแปรสำหรับเก็บ URL ของ QR Code
 
   formData: FormGroup;
   isSubmitting: boolean = false; // เพิ่มตัวแปร isSubmitting
   linkPrompray: any;
+  selectedFiles: any = []
 
   constructor(
     private router: Router,
@@ -138,7 +139,7 @@ export class BuynowComponent implements OnInit, OnDestroy {
 
   generateQRCode() {
     // เพิ่มราคาทั้งหมดอีก 40 หน่วย
-    const totalWithExtra = this.totalCost + 40;
+    const totalWithExtra = this.totalCost + 300;
     // สร้าง URL ของ QR Code โดยใช้หมายเลข PromptPay และราคาที่เพิ่ม 40 หน่วย
     this.qrCodeUrl = `https://promptpay.io/${this.promptpayNumber}/${totalWithExtra}.png`;
     console.log(this.qrCodeUrl);
@@ -147,6 +148,9 @@ export class BuynowComponent implements OnInit, OnDestroy {
 
   selectCardType(type: string): void {
     this.selectedCardType = type;
+  }
+  onFileChanged(event: any) {
+    this.selectedFiles.push(event.target.files);
   }
   onSubmit(): void {
     if (this.isSubmitting) {
@@ -170,17 +174,41 @@ export class BuynowComponent implements OnInit, OnDestroy {
     this.callService.saveorder(orderData)
       .subscribe(
         response => {
-          console.log('Saved successfully:', response);
-          Swal.fire({
-            icon: 'success',
-            title: 'การสั่งซื้อสำเร็จ!',
-            text: 'ขอบคุณที่ใช้บริการ',
-            confirmButtonText: 'ตกลง'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              this.router.navigate(['/home']);
+          if (response.data) {
+            console.log('Saved successfully:', response);
+
+            // วนลูปอัพโหลดไฟล์ที่เลือก
+            for (const file of this.selectedFiles[0]) {
+              const formData = new FormData();
+              formData.append('file', file);
+              this.callService.saveQrcode(formData, response.data).subscribe(
+                res => {
+                  console.log("saveImage=>", response.data);
+                },
+                error => {
+                  console.error('Failed to save QR code:', error);
+                }
+              );
             }
-          });
+
+            Swal.fire({
+              icon: 'success',
+              title: 'การสั่งซื้อสำเร็จ!',
+              text: 'ขอบคุณที่ใช้บริการ',
+              confirmButtonText: 'ตกลง'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                this.router.navigate(['/usercart']);
+              }
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'เกิดข้อผิดพลาด!',
+              text: 'ไม่สามารถทำรายการได้ในขณะนี้',
+              confirmButtonText: 'ตกลง'
+            });
+          }
           this.isSubmitting = false; // ตั้งค่าสถานะว่าการส่งข้อมูลเสร็จสิ้น
         },
         error => {

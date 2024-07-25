@@ -95,18 +95,18 @@
                     </div>
                     <div class="d-flex justify-content-between">
                         <p class="mb-2">ค่าส่ง</p>
-                        <p class="mb-2">+40.00</p>
+                        <p class="mb-2">+300.00</p>
                     </div>
 
                     <div class="d-flex justify-content-between mb-4">
                         <p class="mb-2">รวมราคา+ค่าขนส่ง</p>
-                        <p class="mb-2">{{ totalCost + 40 }}</p>
+                        <p class="mb-2">{{ totalCost + 300 }}</p>
                     </div>
 
                     <button type="button" class="btn btn-success btn-block btn-lg" data-bs-toggle="modal"
                         data-bs-target="#paymentModal2">
                         <div class="d-flex justify-content-between">
-                            <span>{{ totalCost + 40 }}</span>
+                            <span>{{ totalCost + 300 }}</span>
                             <span>ยืนยันการสั่งซื้อ <i class="fas fa-long-arrow-alt-right ms-2"></i></span>
                         </div>
                     </button>
@@ -123,9 +123,11 @@
                                     <!-- <img src="https://www.paocloud.co.th/wp-content/uploads/2021/01/Screen-Shot-2564-01-26-at-18.56.53.png"
                           alt="QR Code 2" class="img-fluid"> -->
                                     <img class="w-64 h-64 rounded" [src]="qrCodeUrl">
+                                    <div> <input formControlName="files" #fileInput (change)="onFileChanged($event)"
+                                            placeholder="QRCode" class="form-control here" type="file" multiple></div>
                                     <button class="btn btn-active btn-neutral text-simple large-text-button mt-3">
                                         <span>ราคา </span>
-                                        <span>{{ totalCost + 40 }}</span>
+                                        <span>{{ totalCost + 300 }}</span>
                                     </button>
                                 </div>
                                 <div class="modal-footer">

@@ -1,174 +1,158 @@
-<div class="container">
-  <div class="row">
-    <div class="col-12">
-      <div class="card my-4">
-        <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-          <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-            <h6 class="text-white text-capitalize ps-3">จัดการสินค้า</h6>
-          </div>
-        </div>
-        <div class="mt-4">
-          <div class="row">
-            <div class="col-6 d-flex align-items-center">
+<div class="full-screen">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="card my-4 bg-dark text-white">
+          <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
+            <div class="bg-gradient-dark shadow-sm  pt-4 pb-3">
+              <h6 class="text-white text-capitalize text-center ps-3">จัดการสินค้า</h6>
             </div>
-            <div class="col-6 text-end">
-              <button type="button" class="btn bg-gradient-success mb-0" data-bs-toggle="modal"
-                data-bs-target="#exampleModal" data-bs-whatever="@fat"><i
-                  class="material-icons text-sm">add</i>เพิ่มสินค้า</button>
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="exampleModalLabel">แก้ไขข้อมูล</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
+          </div>
+          <div class="mt-4">
+            <div class="row">
+              <div class="col-6 d-flex align-items-center">
+              </div>
+              <div class="col-6 text-end">
+                <button type="button" class="btn bg-gradient-success mb-0" data-bs-toggle="modal"
+                  data-bs-target="#exampleModal" data-bs-whatever="@fat"><i
+                    class="material-icons text-sm">add</i>เพิ่มสินค้า</button>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">แก้ไขข้อมูล</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
 
-                      <form [formGroup]="productForm" (submit)="onSubmit()" class="p-4 border rounded bg-light">
-                        <div class="form-group row mb-3">
-                          <label for="productTypeId" class="col-4 col-form-label">ประเภทสินค้า</label>
-                          <div class="col-8">
-                            <select class="form-control" formControlName="productTypeId">
-                              <option value="">======== กรุณาเลือก ========</option>
-                              <option *ngFor="let item of productTypeList" [value]="item.productTypeId">
-                                {{item.productTypeName}}
-                              </option>
-                            </select>
-                          </div>
-                        </div>
-
-                        <div class="form-group row mb-3">
-                          <label for="productName" class="col-4 col-form-label">ชื่อสินค้า</label>
-                          <div class="col-8">
-                            <input formControlName="productName" placeholder="ชื่อสินค้า" class="form-control"
-                              type="text" required>
-                            <div
-                              *ngIf="productForm.controls['productName'].invalid && (productForm.controls['productName'].dirty || productForm.controls['productName'].touched || isSubmit)"
-                              class="invalid-feedback d-block">
-                              กรุณากรอกข้อมูล ชื่อสินค้า
+                        <form [formGroup]="productForm" (submit)="onSubmit()" class="p-4 border rounded bg-light">
+                          <div class="form-group row mb-3">
+                            <label for="productTypeId" class="col-4 col-form-label">ประเภทสินค้า</label>
+                            <div class="col-8">
+                              <select class="form-select" formControlName="productTypeId">
+                                <option value="">======== กรุณาเลือก ========</option>
+                                <option *ngFor="let item of productTypeList" [value]="item.productTypeId">
+                                  {{item.productTypeName}}
+                                </option>
+                              </select>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="form-group row mb-3">
-                          <label for="productDesc" class="col-4 col-form-label">รายละเอียดสินค้า</label>
-                          <div class="col-8">
-                            <input formControlName="productDesc" placeholder="รายละเอียดสินค้า" class="form-control"
-                              type="text" required>
-                            <div
-                              *ngIf="productForm.controls['productDesc'].invalid && (productForm.controls['productDesc'].dirty || productForm.controls['productDesc'].touched || isSubmit)"
-                              class="invalid-feedback d-block">
-                              กรุณากรอกข้อมูล รายละเอียดสินค้า
+                          <div class="form-group row mb-3">
+                            <label for="productName" class="col-4 col-form-label">ชื่อสินค้า</label>
+                            <div class="col-8">
+                              <input formControlName="productName" placeholder="ชื่อสินค้า"
+                                class="form-control border-0 bg-white" type="text" required>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="form-group row mb-3">
-                          <label for="price" class="col-4 col-form-label">ราคา</label>
-                          <div class="col-8">
-                            <div class="input-group">
-                              <span class="input-group-text">฿</span>
-                              <input formControlName="price" step="0.01" placeholder="ราคา" class="form-control"
-                                type="number" (change)="fixDecimals()" pattern="^[0-9]+(\.[0-9]{1,2})?" required>
-                            </div>
-                            <div
-                              *ngIf="productForm.controls['price'].invalid && (productForm.controls['price'].dirty || productForm.controls['price'].touched || isSubmit)"
-                              class="invalid-feedback d-block">
-                              กรุณากรอกข้อมูล ราคา (ตัวเลขเท่านั้น)
+                          <div class="form-group row mb-3">
+                            <label for="productDesc" class="col-4 col-form-label">รายละเอียดสินค้า</label>
+                            <div class="col-8">
+                              <input formControlName="productDesc" placeholder="รายละเอียดสินค้า"
+                                class="form-control border-0 bg-white" type="text" required>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="form-group row mb-3">
-                          <label for="quantity" class="col-4 col-form-label">จำนวน</label>
-                          <div class="col-8">
-                            <input formControlName="quantity" placeholder="จำนวน" class="form-control" type="number"
-                              required>
-                            <div
-                              *ngIf="productForm.controls['quantity'].invalid && (productForm.controls['quantity'].dirty || productForm.controls['quantity'].touched || isSubmit)"
-                              class="invalid-feedback d-block">
-                              กรุณากรอกข้อมูล จำนวน (ตัวเลขเท่านั้น)
+                          <div class="form-group row mb-3">
+                            <label for="price" class="col-4 col-form-label">ราคา</label>
+                            <div class="col-8">
+                              <div class="input-group">
+                                <span class="input-group-text border-0 bg-white">฿</span>
+                                <input formControlName="price" step="0.01" placeholder="ราคา"
+                                  class="form-control border-0 bg-white" type="number" (change)="fixDecimals()"
+                                  pattern="^[0-9]+(\.[0-9]{1,2})?" required>
+                              </div>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="form-group row mb-3">
-                          <label for="files" class="col-4 col-form-label">รูปสินค้า</label>
-                          <div class="col-8">
-                            <input formControlName="files" #fileInput (change)="onFileChanged($event)"
-                              placeholder="รูปสินค้า" class="form-control" type="file" multiple required>
-                            <div
-                              *ngIf="productForm.controls['files'].invalid && (productForm.controls['files'].dirty || productForm.controls['files'].touched || isSubmit)"
-                              class="invalid-feedback d-block">
-                              กรุณาเลือกรูปภาพสินค้า
+                          <div class="form-group row mb-3">
+                            <label for="quantity" class="col-4 col-form-label">จำนวน</label>
+                            <div class="col-8">
+                              <input formControlName="quantity" placeholder="จำนวน"
+                                class="form-control border-0 bg-white" type="number" required>
                             </div>
                           </div>
-                        </div>
 
-                        <div class="form-group row mt-4">
-                          <div class="col-12 text-center">
-                            <button name="submit" type="submit" class="btn btn-primary">บันทึกสินค้า</button>
+                          <div class="form-group row mb-3">
+                            <label for="files" class="col-4 col-form-label">รูปสินค้า</label>
+                            <div class="col-8">
+                              <input formControlName="files" #fileInput (change)="onFileChanged($event)"
+                                placeholder="รูปสินค้า" class="form-control border-0 bg-white" type="file" multiple
+                                required>
+                            </div>
                           </div>
-                        </div>
-                      </form>
 
-                      <!-- ********************************************** -->
+                          <div class="form-group row mt-4">
+                            <div class="col-12 text-center">
+                              <button name="submit" type="submit" class="btn btn-primary">บันทึกสินค้า</button>
+                            </div>
+                          </div>
+                        </form>
+
+                        <!-- ********************************************** -->
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="card-body px-0 pb-2">
-          <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-              <thead>
-                <tr>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รูปสินค้า</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รายละเอียดสินค้า</th>
-                  <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ประเภทสินค้า</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ราคา</th>
-                  <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">จำนวน</th>
-                  <th class="text-secondary opacity-7"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let product of productList">
-                  <td>
-                    <div class="d-flex px-2 py-1">
-                      <div>
-                        <img *ngFor="let productImg of product.imgList" [src]="productImg"
-                          class="avatar avatar-sm me-3 border-radius-lg" alt="product image">
+          <div class="card-body px-0 pb-2">
+            <div class="table-responsive p-0">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รูปสินค้า</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">รายละเอียดสินค้า
+                    </th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">ประเภทสินค้า
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">ราคา
+                    </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">จำนวน
+                    </th>
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let product of productList">
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div>
+                          <img *ngFor="let productImg of product.imgList" [src]="productImg"
+                            class="avatar avatar-sm me-3 border-radius-lg" alt="product image">
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-0 text-sm">{{product.productName}}</h6>
-                      <p class="text-xs text-secondary mb-0">{{product.productDesc}}</p>
-                    </div>
-                  </td>
-                  <td>
-                    <p class="text-xs font-weight-bold mb-0">{{ product.productType ?
-                      product.productType.productTypeName : '' }}</p>
-                    <p class="text-xs text-secondary mb-0">{{ product.productType ? product.productType.productTypeDesc
-                      : '' }}</p>
-                  </td>
-                  <td class="align-middle text-center text-sm">
-                    <span class="text-secondary text-xs font-weight-bold">{{product.price}}</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <span class="text-secondary text-xs font-weight-bold">{{product.quantity}}</span>
-                  </td>
-                  <td class="align-middle text-center">
-                    <button class="btn btn-warning" (click)="onUpdateProduct(product.productId)">แก้ไข</button>
-                    <button class="btn btn-danger" (click)="onDeleteProduct(product.productId)">ลบ</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                    </td>
+                    <td>
+                      <div class="d-flex flex-column justify-content-center">
+                        <h6 class="mb-0 text-sm">{{product.productName}}</h6>
+                        <p class="text-xs text-secondary mb-0">{{product.productDesc}}</p>
+                      </div>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{ product.productType ?
+                        product.productType.productTypeName : '' }}</p>
+                      <p class="text-xs text-secondary mb-0">{{ product.productType ?
+                        product.productType.productTypeDesc
+                        : '' }}</p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <span class="text-secondary text-xs font-weight-bold">{{product.price}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <span class="text-secondary text-xs font-weight-bold">{{product.quantity}}</span>
+                    </td>
+                    <td class="align-middle text-center">
+                      <button class="btn btn-warning" (click)="onUpdateProduct(product.productId)">แก้ไข</button>
+                      <button class="btn btn-danger" (click)="onDeleteProduct(product.productId)">ลบ</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>

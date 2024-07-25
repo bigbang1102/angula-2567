@@ -17,6 +17,7 @@ import { UserhomeComponent } from './modules/userhome/userhome.component';
 import { BuynowComponent } from './modules/buynow/buynow.component';
 import { UsercardComponent } from './modules/usercard/usercard.component';
 import { AdminorderComponent } from './modules/adminorder/adminorder.component';
+import { GunshotComponent } from './modules/gunshot/gunshot.component';
 
 
 
@@ -72,6 +73,9 @@ const routes: Routes = [
     }, {
       path: 'adminorder',
       component: AdminorderComponent
+    }, {
+      path: 'gunshot',
+      component: GunshotComponent
     }]
   }
 ];

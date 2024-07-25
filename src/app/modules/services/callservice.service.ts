@@ -144,6 +144,41 @@ export class CallserviceService {
   updateProfileAvatar(data: FormData, userId: any): Observable<any> {
     return this.http.put<any>(API_ENDPOINT.concat('/imguser/update/' + userId), data)
   }
+  saveQrcode(formData: FormData, ordersId: any): Observable<any> {
+    return this.http.post<any>(API_ENDPOINT.concat('/payment/saveImage/' + ordersId), formData)
+  }
+
+  deletePaymentImage(fileName: any): Observable<any> {
+    return this.http.delete(API_ENDPOINT.concat('/payment/deleteImgByFileName?fileName=' + fileName));
+  }
+  getAllPaymentImage(): Observable<any> {
+    return this.http.get(API_ENDPOINT.concat('/payment/getAllPayments'));
+  }
+  // removeImgByProductId(productId : any) : Observable<any> {
+  //   return this.http.delete(API_ENDPOINT.concat('/product/removeImgByProductId?productId='+ productId));
+  // }
+  getPaymentImgByUserId(ordersId: any): Observable<any> {
+    return this.http.get(API_ENDPOINT.concat('/payment/getPaymentImgByOrdersId?ordersId=' + ordersId))
+  }
+
+  getPaymentImgBlobThumbnail(fileName: string): Observable<Blob> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+    return this.http.get<Blob>(API_ENDPOINT.concat('/payment/getImageByte?fileName=' + fileName)
+      , { headers: headers, responseType: 'blob' as 'json' });
+  }
+
+  gePaymentImageByte(fileName: string): Observable<Blob> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    });
+    return this.http.get<Blob>(API_ENDPOINT.concat('/payment/getImageByte?fileName=' + fileName)
+      , { headers: headers, responseType: 'blob' as 'json' });
+  }
+
 
 }
 

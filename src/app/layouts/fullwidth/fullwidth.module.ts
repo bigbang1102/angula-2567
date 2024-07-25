@@ -22,6 +22,7 @@ import { UserhomeComponent } from 'src/app/modules/userhome/userhome.component';
 import { BuynowComponent } from 'src/app/modules/buynow/buynow.component';
 import { UsercardComponent } from 'src/app/modules/usercard/usercard.component';
 import { AdminorderComponent } from 'src/app/modules/adminorder/adminorder.component';
+import { GunshotComponent } from 'src/app/modules/gunshot/gunshot.component';
 
 
 
@@ -52,7 +53,8 @@ import { AdminorderComponent } from 'src/app/modules/adminorder/adminorder.compo
     UserhomeComponent,
     BuynowComponent,
     UsercardComponent,
-    AdminorderComponent
+    AdminorderComponent,
+    GunshotComponent
 
   ]
 })

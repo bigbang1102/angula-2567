@@ -49,4 +49,36 @@
   .form-group {
     padding: 10px 0; /* Top and bottom padding */
   }
-  
+  .container {
+    background: #f8f9faad;
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .profile-img img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #ffffff3b;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .font-weight-bold {
+    font-size: 1.2rem;
+  }
+
+  .form-control {
+    border-radius: 10px;
+  }
+
+  .btn-dark {
+    background: #343a40;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+  }
+
+  .btn-dark:hover {
+    background: #23272b;
+  }

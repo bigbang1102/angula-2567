@@ -1,6 +1,8 @@
 .full-screen {
+  position: relative;
   height: 100vh;
   overflow: hidden;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -10,136 +12,104 @@
   background-repeat: no-repeat;
 }
 
-.container {
+
+
+.table {
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgba(255, 255, 255, 0.8);
-}
-.order-list-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
+  margin-bottom: 15px;
+  border-collapse: collapse;
 }
 
-.order-card {
+.table th, .table td {
   border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  margin: 2px;
-  padding: 10px;
-  width: calc(100% / 3 - 20px); /* ปรับขนาดการ์ดแต่ละคำสั่งซื้อ */
-  background-color: rgba(135, 133, 134, 0.56);
-  box-sizing: border-box;
+  padding: 8px;
+  text-align: left;
 }
 
-.product-card {
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  overflow: hidden;
-  background-color: #fff;
-  transition: transform 0.2s;
-  padding: 5px;
-  flex: 0 0 48%; /* ปรับขนาดการ์ดสินค้า */
-  max-width: 48%;
-  box-sizing: border-box;
-  margin: 5px 1%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.product-card img {
-  max-width: 100%;
-  height: auto;
-}
-
-.product-details {
-  padding: 5px;
-  text-align: center;
-}
-
-.product-details h6 {
-  font-size: 0.9rem;
-  margin: 3px 0;
-}
-
-.product-details p {
-  color: #c51010;
-  font-size: 0.7rem;
-}
-
-.product-details .price,
-.product-details .total-price {
-  color: #f21717;
-  font-size: 0.8rem;
+.table th {
+  background-color: #f2f2f2;
   font-weight: bold;
 }
 
-.product-details .quantity {
-  color: #555;
-  font-size: 0.7rem;
+.product-img {
+  width: 100px;
+  height: auto;
 }
 
-.bg-gradient-orange {
-  background-color: #030303;
+
+/* เพิ่ม CSS เพื่อปรับแต่งรายการสั่งซื้อให้สวยงาม */
+table {
+width: 100%;
+border-collapse: collapse;
 }
 
-.modal-dialog-centered {
+th, td {
+padding: 10px;
+text-align: center;
+border: 1px solid #ddd;
+}
+
+th {
+background-color: #f2f2f2;
+color: #333;
+}
+
+td img {
+max-width: 50px;
+max-height: 50px;
+border-radius: 50%;
+}
+
+.badge {
+padding: 5px 10px;
+border-radius: 3px;
+font-size: 12px;
+}
+
+.bg-gradient-success {
+background-color: #28a745;
+color: #fff;
+}
+
+.bg-gradient-danger {
+background-color: #dc3545;
+color: #fff;
+}
+
+.w-fit {
+width: fit-content;
+}
+
+/* .border-b {
+border-bottom: 1px solid #e5e7eb;
+} */
+
+.d-flex {
   display: flex;
-  align-items: center;
-  min-height: calc(100% - 3rem);
 }
 
-.modal-content {
-  width: 100%;
-  max-width: 600px;
-  margin: auto;
+.justify-content-between {
+  justify-content: space-between;
 }
 
-.form-control-plaintext {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+.bg-gray-dark {
+  background-color: #1a1a1a;
+}
+/* ตั้งค่าพื้นหลังสีเทาให้กับ tbody */
+table tbody {
+  background-color: #9394966f; /* สีเทาอ่อน */
 }
 
-.border {
-  border: 1px solid #dee2e6 !important;
-  padding: 0.375rem 0.75rem;
+/* ตั้งค่าพื้นหลังสีเทาให้กับแต่ละแถวใน tbody */
+table tbody tr {
+  background-color: #3f414071; /* สีเทาอ่อนกว่าพื้นหลังของ tbody */
 }
 
-.bg-info {
-  background-color: #919b97 !important;
-}
-.bg-infoo {
-  background-color: #8bd584 !important;
-}
-
-.text-white {
-  color: #fff !important;
-}
-
-.product-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-}
-
-.custom-gray-btn {
-  background-color: #6c757d; /* สีเทาของ Bootstrap */
-  border-color: #6c757d;
-  color: white;
-}
-
-.custom-gray-btn:hover {
-  background-color: #5a6268; /* สีเข้มขึ้นเมื่อ hover */
-  border-color: #545b62;
+/* เพิ่มการปรับแต่งให้กับแถวที่เป็นปัจจุบันหรือที่ถูกเลือก */
+table tbody tr:hover {
+  background-color: #222223; /* สีเทาที่เข้มขึ้นเมื่อวางเมาส์ */
 }

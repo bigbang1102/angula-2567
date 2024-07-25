@@ -41,7 +41,7 @@
     background-color: white;
     border-left: 1px solid #ddd;
     padding: 20px;
-    box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+    box-shadow: -2px 0 5px rgba(242, 242, 242, 0.3);
     transition: right 0.3s ease;
     overflow-y: auto;
     z-index: 1000;
@@ -61,7 +61,7 @@
     display: flex;
     gap: 20px;
     align-items: center;
-    border: 1px solid #ddd;
+    border: 1px solid #fdf3f3;
     padding: 10px;
     border-radius: 5px;
   }
@@ -77,21 +77,32 @@
     flex-direction: column;
   } 
   
-  .total-cost {
-    margin-top: 20px;
-    text-align: right;
+  .full-screen {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://wallpapers.com/images/hd/para-commandos-with-m16-celeinai0nz09klc.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
   
-  .toggle-cart-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 1001;
+  .full-screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* ทำให้พื้นหลังมืดลง */
+    z-index: 1;
   }
   
+  .full-screen-content {
+    position: relative;
+    z-index: 2; /* ทำให้เนื้อหาที่อยู่ด้านหน้าของพื้นหลังมืด */
+  }
